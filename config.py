@@ -6,8 +6,8 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'this-really-needs-to-be-changed'
-
+    SECRET_KEY = (os.environ.get('SECRET_KEY') or 
+        'this-really-needs-to-be-changed')
 
 class ProductionConfig(Config):
     DEBUG = False
@@ -21,6 +21,9 @@ class StagingConfig(Config):
 class DevelopmentConfig(Config):
     DEVELOPMENT = True
     DEBUG = True
+    CSRF_ENABLED = True
+    SECRET_KEY = (os.environ.get('SECRET_KEY') or 
+    'this-really-needs-to-be-changed')
 
 
 class TestingConfig(Config):
